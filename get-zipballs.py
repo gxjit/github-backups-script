@@ -21,6 +21,8 @@ for repo in repos:
         print(downloadUrl, "\n", downloadFile)
         urlretrieve(downloadUrl, downloadFile)
 
+print("\nAll Done...")
+
 
 # https://api.github.com/users/gxjit/repos
 # https://api.github.com/repos/gxjit/conCatJs/{archive_format}{/ref}
