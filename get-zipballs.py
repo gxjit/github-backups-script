@@ -1,6 +1,6 @@
 from json import loads
-from os.path import exists, expanduser, join
 from os import mkdir
+from os.path import exists, expanduser, join
 from urllib.request import urlopen, urlretrieve
 
 username = "gxjit"
