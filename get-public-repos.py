@@ -3,14 +3,16 @@ from os import chdir, mkdir
 from os.path import exists, expanduser, join
 from subprocess import run
 from urllib.request import urlopen
+from shutil import rmtree
 
 username = "gxjit"
 repoUrl = f"https://api.github.com/users/{username}/repos"
 downloadPath = join(expanduser("~"), "Downloads", "github-public-repos")
 
-if not exists(downloadPath):
-    mkdir(downloadPath)
+if exists(downloadPath):
+    rmtree(downloadPath)
 
+mkdir(downloadPath)
 chdir(downloadPath)
 
 repos = loads(urlopen(repoUrl).read().decode("utf-8"))

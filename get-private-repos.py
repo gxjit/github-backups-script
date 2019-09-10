@@ -2,6 +2,7 @@ from json import loads
 from os import chdir, mkdir
 from os.path import exists, expanduser, join
 from subprocess import PIPE, run
+from shutil import rmtree
 
 downloadPath = join(expanduser("~"), "Downloads", "github-private-repos")
 
@@ -9,9 +10,10 @@ getRepos = run(["hub", "api", "/user/repos"], check=True, stdout=PIPE)
 
 reposAll = getRepos.stdout.decode().replace("'", "").strip()
 
-if not exists(downloadPath):
-    mkdir(downloadPath)
+if exists(downloadPath):
+    rmtree(downloadPath)
 
+mkdir(downloadPath)
 chdir(downloadPath)
 
 repos = loads(reposAll)

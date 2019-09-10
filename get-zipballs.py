@@ -1,15 +1,19 @@
 from json import loads
-from os import mkdir
+from os import mkdir, chdir
 from os.path import exists, expanduser, join
 from urllib.request import urlopen, urlretrieve
+from shutil import rmtree
 
 username = "gxjit"
 archiveFormat = "zipball"
 repoUrl = f"https://api.github.com/users/{username}/repos"
 downloadPath = join(expanduser("~"), "Downloads", "github-repos")
 
-if not exists(downloadPath):
-    mkdir(downloadPath)
+if exists(downloadPath):
+    rmtree(downloadPath)
+
+mkdir(downloadPath)
+chdir(downloadPath)
 
 repos = loads(urlopen(repoUrl).read().decode("utf-8"))
 
